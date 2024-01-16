@@ -3,7 +3,8 @@
 # INTRODUCCION
 
 ```
-Este proyecto es una actualización al project "nft-react-boilerplate": https://github.com/gary-george/nft-react-boilerplate
+Este proyecto es una actualización al project "nft-react-boilerplate": 
+https://github.com/gary-george/nft-react-boilerplate
 
 Se siguieron los pasos del BLOG POST:
 https://medium.com/coinmonks/guide-to-creating-your-own-nft-with-javascript-solidity-part-1-of-3-7909b80fae94
@@ -14,7 +15,7 @@ Forma parte de la Práctica libre sobre Blockchain del MASTER IoT de la UCM.
 
 ```
 
-# HERRAMIENTAS - -
+# HERRAMIENTAS
 
 ```
  - React 
