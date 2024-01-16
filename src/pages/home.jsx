@@ -9,7 +9,11 @@ import Contract from "../truffle/abis/NFT.json";
 const Home = () => {
   const [owner, setOwner] = useState(null);
   const [totalSupply, setTotalSupply] = useState(null);
+  const [uri, setUri] = useState(null);
+  const [sold, setSold] = useState(null);
+  const [price, setPrice] = useState(null);
   const [imagePath, updatePath] = useState(null);
+  
   useEffect(() => {
     const loadContract = async () => {
       try {
@@ -30,29 +34,25 @@ const Home = () => {
     
         // GET THE AMOUNT OF NFTs MINTED
         const totalSupply = await contract.methods.totalSupply().call();
-        console.log(`totalSupply ${totalSupply}`);
-    
-        //  UNCOMMENT THIS BLOCK ONCE YOU HAVE MINTED AN NFT
+        setTotalSupply(totalSupply);
         
         // THE TOKEN ID YOU WANT TO QUERY
         const tokenID = 2;
     
         // GET THE TOKEN URI
-        // THE URI IS THE LINK TO WHERE YOUR JSON DATA LIVES
         const uri = await contract.methods.tokenURI(tokenID).call();
-        console.log("uri: ", uri);
+        setUri(uri);
     
         // GET THE OWNER OF A SPECIFIC TOKEN
         const owner = await contract.methods.ownerOf(tokenID).call();
-        console.log("owner: ", owner);
         setOwner(owner);
         // CHECK IF A SPECIFIC TOKEN IS SOLD
         const sold = await contract.methods.sold(tokenID).call();
-        console.log("sold: ", sold);
+        setSold(sold);
     
         // GET PRICE OF A SPECIFIC TOKEN
         const price = await contract.methods.price(tokenID).call();
-        console.log("price: ", price);
+        setPrice(price);
         // 
       } catch (e) {
         console.log("error = ", e);
@@ -78,8 +78,8 @@ const Home = () => {
       style={{
         display: "flex",
         flexDirection: "column",
-        width: "500px",
-        border: "8px blue solid",
+        width: "725px",
+        border: "8px black solid",
         boxShadow: "0 0 12px rgba(0,0,0,0.5)",
         borderRadius: "20px",
         margin: "100px auto",
@@ -87,19 +87,17 @@ const Home = () => {
         padding: "20px",
       }}
     >
-      <p>NFT React Master IoT</p>
-      <p>
-        Crear un NFT en un blockchain local Ganache
-        <br />
-        <br />
-        <br />
-        A continuación se pueden ver los valores luego de Mint un NFT. 
-        Por ejemplo la imagen de la UCM:
-      </p>
+      <p><center><h1>NFT REACT MASTER IoT</h1></center></p>
+
+      <h2><center>Crear NFTs en un Blockchain Local GANACHE</center></h2>
+
+       {totalSupply && <p>- GET THE AMOUNT OF NFTs MINTED: <b>{totalSupply}</b></p>}
+       {uri && <p>- GET THE LAST TOKEN URI: <b>{uri}</b></p>}
+       {owner && <p>- OWNER OF LAST SPECIFIC TOKEN: <b>{owner}</b></p>}    
+       {sold && <p>- CHECK IF LAST SPECIFIC TOKEN IS SOLD: <b>{sold}</b></p>}    
+       {price && <p>- GET PRICE OF LAST SPECIFIC TOKEN: <b>{price}</b></p>} 
+       <p>- SHOW IMAGE FROM LAST TOKEN:</p>
        {imagePath && <img src={imagePath} />}
-
-       {owner && <p>OWNER OF A SPECIFIC TOKEN: {owner}</p>}
-
     </div>
   );
 };

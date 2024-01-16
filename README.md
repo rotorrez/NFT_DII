@@ -1,103 +1,50 @@
-# NFT REACT BOILERPLATE
+# NFT REACT MASTER IoT
 
-# INTRODUCTION
+# INTRODUCCION
 
 ```
-SEE THE VIDEO WALKTHROUGH OF THIS BOILERPLATE HERE:
-https://youtu.be/F0xD1DK3pe4
+Este proyecto es una actualización al project "nft-react-boilerplate": https://github.com/gary-george/nft-react-boilerplate
 
-SEE BLOG POST WHICH THIS CODE WAS WRITTEN FOR:
+Se siguieron los pasos del BLOG POST:
 https://medium.com/coinmonks/guide-to-creating-your-own-nft-with-javascript-solidity-part-1-of-3-7909b80fae94
 
-SEE THE REAL WORLD PROJECT I CREATED USING THE LOGIC FROM MY BLOG POST HERE:
-https://cryptoghoulz.com
 
-
-THIS PROJECT IS NOT MEANT TO BE A PROJECT FOR YOU TO USE IN PRODUCTION
-IT IS TO HELP YOU UNDERSTAND HOW ALL OF THE MOVING PARTS STICK TOGETHER
-
-GOOD LUCK & HAPPY CODING 🚀
-```
-
-# IMPORTANT NOTICE
+Este proyecto nos ayuda a comprender acerca de la creación de NFTs y sus componentes asociados.
+Forma parte de la Práctica libre sobre Blockchain del MASTER IoT de la UCM.
 
 ```
-1 - YOU NEED TO CREATE A .env FILE (SEE EXAMPLE FILE .example-env)
 
-
-2 - YOU WILL NEED TO ADD A KEY CALLED PRIVATE_KEYS
-PRIVATE_KEYS MUST BE THE PRIVATE KEY OF A WALLET ADDRESS THAT YOU WISH TO BE THE OWNER OF YOUR CONTRACT ONCE DEPLOYED
-YOU WILL NEED TO PROVIDE YOUR ACCOUNT WITH SOME TEST CURRENCY IN ORDER TO DEPLOY TO A TESTNET
-
-2 - YOU WILL ALSO NEED TO ADD A KEY CALLED INFURA_ID TO YOUR .ENV
-INFURA_ID MUST BE A VALID INFURA PROJECT_ID , WITHOUT THIS YOUR MIGRATION WONT WORK AS IT WONT BE POINTING TO A VALID ETHEREUM NODE
-
-3 - YOUR ABI FILE WILL NOT EXIST UNTIL YOU RUN UNTIL YOU RUN TRUFFLE MIGRATE
-
-** IF ALL ELSE FAILS , WATCH THIS EXCELLENT BEGINNERS VIDEO
-https://www.youtube.com/watch?v=CgXQC4dbGUE&t=78s&ab_channel=DappUniversity
-```
-
-# GETTING STARTED - -
+# HERRAMIENTAS - -
 
 ```
-This project requires that you use yarn instead of npm commands
-If you use npm commands the dependencies will fail to install correctly
-
-1- Install yarn globally:
-npm install --global yarn
-
-2- Install project dependencies:
-yarn
-
-3- Start the project:
-yarn start
+ - React 
+ - Truffle 
+ - IPFS 
+ - Solidity 
+ - Web3JS 
+ - Ganache 
 
 ```
 
 # IPFS
 
 ```
-YOU WILL FIND AN IPFS FILE (./utils/ipfs.js)
+Se utiliza un archivo IPFS (./utils/ipfs.js)
 
-THIS FILE WILL UPLOAD AN IMAGE TO IPFS , UPLOAD A METADATA FILE TO IPFS
-AND THEN RETURN YOU BACK THE URLS AND CIDs.
-IF YOU LOG OUT THE RETURN DATA FROM THE CALL YOU WILL SEE ALL OF THE ABOVE IN YOUR CONSOLE LOG
-
-YOU WILL NEED TO CALL WITH WITH A VALID IMAGE BLOB OR IMAGE DATA URI FOR IT TO BE A SUCCESSFUL CALL
-
-FOR MORE INFORMATION ON IPFS LOOK HERE:
-https://ipfs.io/
+Este archivo upload una imagen al IFPS (https://www.pinata.cloud/), y retorna un IpfsHash.
 
 ```
 
-# TRUFFLE COMMANDS
+# COMANDOS TRUFFLE 
 
 ```
-1 - TEST CONTRACTS WILL COMPILE & CREATE ABI FILES -- BUT THEY WONT HAVE ANY NETWORK INFORMATION ADDED
+1 - Para compilar los Contratos y crear archivos ABI 
 truffle compile
 
-2 - DEPLOY CONTRACT ON NETWORK (IN THIS EXAMPLE RINKEBY)
-truffle migrate --reset --network rinkeby
+2 - Para deployar el Contrato en nuestra Red Local Ganache
+truffle migrate --reset
 
-3 - RUN MINT SCRIPT ON A SPECIFIC NETWORK (IN THIS EXAMPLE RINKEBY)
-truffle exec src/utils/mint.js --network rinkeby
-
-```
-
-# HELPFUL LINKS
-
-```
-CREATE BASE64 IMAGE ONLINE
-https://elmah.io/tools/base64-image-encoder/
-
-INFURA
-https://www.infura.io/
-
-IPFS
-https://docs.ipfs.tech/concepts/how-ipfs-works/
-
-WEB3 JS
-https://web3js.readthedocs.io/en/v1.8.1/
+3 - Para mint nuestra imagen see ejecuta el script
+truffle exec src/utils/mint.js
 
 ```
