@@ -52,7 +52,7 @@
   "sourceMap": "65:352:14:-:0;;;112:10;89:33;;;;;;;;;;;;;;;;;;;;65:352;;;;;;;;;;;;;;;;",
   "deployedSourceMap": "65:352:14:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;126:36;;;:::i;:::-;;;;;;;;;;;;;;;;;;;89:33;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;312:103;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;126:36;;;;:::o;89:33::-;;;;;;;;;;;;:::o;312:103::-;224:5;;;;;;;;;;210:19;;:10;:19;;;195:101;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;401:9:::1;374:24;:36;;;;312:103:::0;:::o",
   "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.6.0 <0.8.0;\n\ncontract Migrations {\n  address public owner = msg.sender;\n  uint public last_completed_migration;\n\n  modifier restricted() {\n    require(\n      msg.sender == owner,\n      \"This function is restricted to the contract's owner\"\n    );\n    _;\n  }\n\n  function setCompleted(uint completed) public restricted {\n    last_completed_migration = completed;\n  }\n}",
-  "sourcePath": "/Users/garygeorge/Documents/development/boilerplate/nft-react-boilerplate/src/truffle/contracts/Migrations.sol",
+  "sourcePath": "/home/rtorrez/Documentos/personal/ntf/NFT_DII/src/truffle/contracts/Migrations.sol",
   "ast": {
     "absolutePath": "project:/src/truffle/contracts/Migrations.sol",
     "exportedSymbols": {
@@ -891,12 +891,12 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xa6d7d266692440871029310062E8Ef37f09d2B14",
-      "transactionHash": "0xde7f20b3ec7c4657c58f6bb5e09149557e6ee76428f4fbc697d81a265af3b23f"
+      "address": "0x88aCcBBFecA649e8056fF0E98b87748ab9929e19",
+      "transactionHash": "0x5f12afbcb667cf1e61106c6fdef4359557328d3c37b6006ae2a18230cbe2d6cc"
     }
   },
-  "schemaVersion": "3.4.2",
-  "updatedAt": "2022-12-28T09:49:46.267Z",
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-01-16T00:20:16.152Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

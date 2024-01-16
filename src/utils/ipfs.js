@@ -1,58 +1,37 @@
-/* eslint-disable */
-const { create } = require("ipfs-http-client");
+import axios from 'axios';
+import FormData from 'form-data';
+import fs from 'fs';
 
-const projectId = "YOUR_INFURA_IPFS_PROJECT_ID";
-const projectSecret = "YOUR_INFURA_IPFS_PROJECT_SECRET";
+const JWT = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySW5mb3JtYXRpb24iOnsiaWQiOiIzZWZiYTA4My1jZmNiLTRiZmYtYjc2Yy1hNTQ4MWFlM2JkMmIiLCJlbWFpbCI6InJ0b3JyZXpAdWNtLmVzIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsInBpbl9wb2xpY3kiOnsicmVnaW9ucyI6W3siaWQiOiJGUkExIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9LHsiaWQiOiJOWUMxIiwiZGVzaXJlZFJlcGxpY2F0aW9uQ291bnQiOjF9XSwidmVyc2lvbiI6MX0sIm1mYV9lbmFibGVkIjpmYWxzZSwic3RhdHVzIjoiQUNUSVZFIn0sImF1dGhlbnRpY2F0aW9uVHlwZSI6InNjb3BlZEtleSIsInNjb3BlZEtleUtleSI6IjcxMGRlMzNlMDBmMTc3YmYxMGM3Iiwic2NvcGVkS2V5U2VjcmV0IjoiY2FhNzBhNGI2YjA1ZjM0MzAyMjgyMjgyYmM5NThiMDZhMWZmZTgwMzZiMjNiYzYzNjUxNDVjOWUyMDJkOWQ2NSIsImlhdCI6MTcwNTI0NTk4M30.uy5cMDuOGhwbTSFGY_D3nSCTWk-VHLlP0sLVutFRO9s";
 
-const auth =
-  "Basic " + Buffer.from(projectId + ":" + projectSecret).toString("base64");
+const pinFileToIPFS = async () => {
+    const formData = new FormData();
+    const src = "src/utils/images/logo_ucm.png";
+    
+    const file = fs.createReadStream(src)
+    formData.append('file', file)
+    
+    const pinataMetadata = JSON.stringify({
+      name: 'File name',
+    });
+    formData.append('pinataMetadata', pinataMetadata);
+    
+    const pinataOptions = JSON.stringify({
+      cidVersion: 0,
+    })
+    formData.append('pinataOptions', pinataOptions);
 
-const client = create({
-  host: "ipfs.infura.io",
-  port: 5001,
-  protocol: "https",
-  headers: {
-    authorization: auth,
-  },
-});
-
-// THIS FUNCTION REQURIES A BASE64 IMAGE TO BE PASSED IN. ( BETTER TO SEND AN IMAGE BUFFER IN PRODUCTION )
-const uploadFileToIPFS = async (file) => {
-  try {
-    //1 ADD IMAGE File to IPFS
-    const url = await client.add(file);
-    const uploadedImageUrl = `https://ipfs.io/ipfs/${url?.path}`;
-
-    //2 ADD Metadata File to IPFS
-    const metadata = {
-      name: "Boilerplate example name",
-      description: "Boilerplate example description",
-      image: uploadedImageUrl,
-    };
-    const metadataRes = await client.add(JSON.stringify(metadata));
-    const metaDataUrl = `https://ipfs.io/ipfs/${metadataRes?.path}`;
-
-    //3 Return image & metadata URLs and also the CID for each
-    const ipfsData = {
-      uploadedImageUrl,
-      metaDataUrl,
-      metaDataHashCID: metadataRes?.path,
-      imageHashCID: url?.path,
-    };
-
-    console.log(ipfsData);
-    return ipfsData;
-  } catch (e) {
-    console.log("error uploading to IPFS", e);
-  }
-};
-
-//*
-// This block allows us to call the IPFS function with a base64 string ... to demostrate manually how it works
-(async () => {
-  const YOUR_BASE_64 = "";
-  const exampleBase64 = `data:image/jpeg;base64,${YOUR_BASE_64}`;
-
-  await uploadFileToIPFS(exampleBase64);
-})();
-// */
+    try{
+      const res = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
+        maxBodyLength: "Infinity",
+        headers: {
+          'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+          'Authorization': `Bearer ${JWT}`
+        }
+      });
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
+}
+pinFileToIPFS()
