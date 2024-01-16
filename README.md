@@ -10,7 +10,7 @@ Se siguieron los pasos del BLOG POST:
 https://medium.com/coinmonks/guide-to-creating-your-own-nft-with-javascript-solidity-part-1-of-3-7909b80fae94
 
 
-Este proyecto nos ayuda a comprender acerca de la creación de NFTs y sus componentes asociados.
+Este proyecto nos ayuda a comprender acerca de la creación de NFTs en un Blockchain Local y sus componentes asociados.
 Forma parte de la Práctica libre sobre Blockchain del MASTER IoT de la UCM.
 
 ```
@@ -45,7 +45,16 @@ truffle compile
 2 - Para deployar el Contrato en nuestra Red Local Ganache
 truffle migrate --reset
 
-3 - Para mint nuestra imagen see ejecuta el script
+3 - Para mint nuestra imagen se ejecuta el script
 truffle exec src/utils/mint.js
 
 ```
+
+# EJECUTAR FRONT END 
+
+```
+1 - Dependiendo de la configuración podria ejecutarse
+export NODE_OPTIONS=--openssl-legacy-provider
+
+2 - Para visualizar la aplicación y detales de los NTFs
+npm run start
